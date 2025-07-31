@@ -1,14 +1,14 @@
-# .github/workflows/norminette.yml
-name: norminette
+# .github/workflows/norm.yaml
+name: norm
 on: [push, pull_request]
 
 jobs:
 
-  norminette_v3_job:
+  job-norm:
     runs-on: ubuntu-latest
-    name: norminette v3.3.50
+    name: Norm v3.3.50
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - uses: alexandregv/norminette-action@v3.3.50
       with:
         flags: '.'

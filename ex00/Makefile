@@ -18,7 +18,7 @@ LIB			:= lib.a
 SRC_DIR		:= src
 SRC_CODES	:= $(shell find $(SRC_DIR) -name '*.c')
 SRC_OBJS	:= $(SRC_CODES:.c=.o)
-SRCS		:= $(subst /$(SRC_DIR),,$(SRC_CODES:.c=))
+SRCS		:= $(subst $(SRC_DIR)/,,$(SRC_CODES:.c=))
 
 TEST_DIR	:= test
 TEST_CODES	:= $(shell find $(TEST_DIR) -name '*.c')
@@ -43,7 +43,7 @@ fclean: lclean
 re: fclean all
 
 #--------------------------------------#
-#- APP --------------------------------#
+#- APP, SRC ---------------------------#
 #--------------------------------------#
 
 app: $(APP)
@@ -61,14 +61,10 @@ $(LIB): $(LIB_OBJS)
 	ar crs $(LIB) $(LIB_OBJS)
 
 #--------------------------------------#
-#- SRC --------------------------------#
-#--------------------------------------#
-
-
-
-#--------------------------------------#
 #- TEST -------------------------------#
 #--------------------------------------#
+
+test: $(TESTS)
 
 %_test: $(TEST_DIR)/%_test.o $(LIB)
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $< $(LIB)
