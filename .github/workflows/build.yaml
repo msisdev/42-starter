@@ -3,9 +3,9 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  job-build:
+  job-build-ex00:
     runs-on: ubuntu-latest
-    name: Build
+    name: Build ex00
     steps:
     - name: Checkout
       uses: actions/checkout@v4
