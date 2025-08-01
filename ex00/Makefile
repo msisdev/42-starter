@@ -4,6 +4,7 @@
 
 CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		+= $(DBG)	# make DBG="-g"
 
 APP			:= main
 
@@ -29,7 +30,7 @@ TESTS		:= $(subst $(TEST_DIR)/,,$(TEST_CODES:.c=))
 #--------------------------------------#
 
 .PHONY: all app test lib
-all: app $(TESTS) lib
+all: lib app $(TESTS)
 
 clean:
 	rm -f **/*.o
@@ -46,7 +47,7 @@ re: fclean all
 #- APP, SRC ---------------------------#
 #--------------------------------------#
 
-app: $(APP)
+app: lib $(APP)
 
 $(APP): $(SRC_OBJS) $(LIB) | $(BIN_DIR)
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $(SRC_OBJS) $(LIB)
