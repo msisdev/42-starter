@@ -30,7 +30,7 @@ TESTS		:= $(subst $(TEST_DIR)/,,$(TEST_CODES:.c=))
 #--------------------------------------#
 
 .PHONY: all app test lib
-all: lib app $(TESTS)
+all: app $(TESTS)
 
 clean:
 	rm -f **/*.o
@@ -47,7 +47,7 @@ re: fclean all
 #- APP, SRC ---------------------------#
 #--------------------------------------#
 
-app: lib $(APP)
+app: $(APP)
 
 $(APP): $(SRC_OBJS) $(LIB) | $(BIN_DIR)
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $(SRC_OBJS) $(LIB)
