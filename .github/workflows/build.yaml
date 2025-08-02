@@ -12,4 +12,4 @@ jobs:
     
     - name: make ex00
       working-directory: ./ex00
-      run: make app
+      run: make re

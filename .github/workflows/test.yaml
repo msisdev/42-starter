@@ -12,7 +12,7 @@ jobs:
     
     - name: make ex00
       working-directory: ./ex00
-      run: make test
+      run: make fclean && make test
 
     - name: make test
       working-directory: ./ex00
