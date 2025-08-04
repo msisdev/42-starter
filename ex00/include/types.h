@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_42.c                                            :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseobk <minseobk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 19:04:41 by minseobk          #+#    #+#             */
-/*   Updated: 2025/08/02 21:18:51 by minseobk         ###   ########.fr       */
+/*   Created: 2025/08/02 21:17:25 by minseobk          #+#    #+#             */
+/*   Updated: 2025/08/02 21:17:55 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "types.h"
+#ifndef TYPES_H
+# define TYPES_H
 
-t_i32	ft_42(void)
-{
-	write(1, "42\n", 3);
-	return (42);
-}
+typedef int	t_i32;
+
+#endif // TYPES_H

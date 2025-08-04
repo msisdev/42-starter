@@ -6,13 +6,14 @@
 /*   By: minseobk <minseobk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:04:11 by minseobk          #+#    #+#             */
-/*   Updated: 2025/07/31 19:05:17 by minseobk         ###   ########.fr       */
+/*   Updated: 2025/08/02 21:18:37 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_42_H
 # define FT_42_H
+# include "types.h"
 
-void	ft_42(void);
+t_i32	ft_42(void);
 
 #endif // FT_42_H
