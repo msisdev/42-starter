@@ -18,5 +18,6 @@ int	main(void)
 	t_i32	i;
 
 	i = ft_42();
+	(void)i;
 	return (0);
 }

@@ -2,36 +2,37 @@
 #- CONFIG -----------------------------#
 #--------------------------------------#
 
-APP			:= ft_tail
-APP_DIR		:= app
-APP_CODES	:= $(shell find $(APP_DIR) -name '*.c')
-APP_OBJS	:= $(APP_CODES:.c=.o)
+APP				  := a.out
+APP_DIR		  := app
+APP_CODES   := $(shell find $(APP_DIR) -name '*.c')
+APP_OBJS	  := $(APP_CODES:.c=.o)
 
-BIN_DIR		:= bin
-INC_DIR		:= include
+BIN_DIR		  := bin
+INC_DIR		  := include
 
-CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror
-CFLAGS		+= -I $(INC_DIR)
-CFLAGS		+= $(DBG)	# make DBG="-g"
+CC				  := cc
+CFLAGS		  := -Wall -Wextra -Werror
+CFLAGS		  += -I $(INC_DIR)
+CFLAGS		  += $(DBG)	# make DBG="-g"
 
-LIB			:= lib.a
-LIB_DIR		:= lib
-LIB_CODES	:= $(shell find $(LIB_DIR) -name '*.c')
-LIB_OBJS	:= $(LIB_CODES:.c=.o)
+LIB				  := lib.a
+LIB_DIR		  := lib
+LIB_CODES	  := $(shell find $(LIB_DIR) -name '*.c')
+LIB_OBJS	  := $(LIB_CODES:.c=.o)
 
-SRC_DIR		:= src
-SRC_CODES	:= $(shell find $(SRC_DIR) -name '*.c')
-SRC_OBJS	:= $(SRC_CODES:.c=.o)
+SRC_DIR		  := src
+SRC_CODES	  := $(shell find $(SRC_DIR) -name '*.c')
+SRC_OBJS	  := $(SRC_CODES:.c=.o)
 
-TEST_DIR	:= test
-TEST_NAMES	:= $(shell find $(TEST_DIR) -mindepth 1 -maxdepth 1 -type d -printf '%f\n')
+TEST_DIR	  := test
+TEST_NAMES  := $(shell find $(TEST_DIR) -mindepth 1 -maxdepth 1 -type d -printf '%f\n')
+
+.PHONY: all app test lib
 
 #--------------------------------------#
 #- CMD --------------------------------#
 #--------------------------------------#
 
-.PHONY: all app test lib
 all: app $(TEST_NAMES)
 
 clean:
@@ -41,6 +42,7 @@ lclean: clean
 	rm -f $(LIB)
 
 fclean: lclean
+	rm -f $(APP)
 	rm -f $(BIN_DIR)/*
 
 re: fclean all
@@ -58,8 +60,8 @@ $(APP): $(LIB_OBJS) $(SRC_OBJS) $(APP_OBJS)
 #- LIB --------------------------------#
 #--------------------------------------#
 
-# lib: $(LIB)
-lib: $(LIB_OBJS)
+lib: $(LIB)
+# lib: $(LIB_OBJS)
 
 $(LIB): $(LIB_OBJS)
 	ar crs $(LIB) $(LIB_OBJS)
