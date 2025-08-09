@@ -79,7 +79,9 @@ src: $(SRC_OBJS)
 test: $(BIN_DIR) $(TEST_NAMES)
 
 .SECONDEXPANSION:
-%_test: $(LIB_OBJS) $(SRC_OBJS) $$(shell find $(TEST_DIR)/$$*_test -type f -name '*.c' | sed 's/\.c/\.o/')
+%_test: $(LIB_OBJS) $(SRC_OBJS)\
+	$$(shell find $(TEST_DIR)/$$*_test -type f -name '*.c' | sed 's/\.c/\.o/') |\
+	$(BIN_DIR)
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $^
 
 #--------------------------------------#
