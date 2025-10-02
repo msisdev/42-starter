@@ -36,7 +36,7 @@ TEST_NAMES  := $(shell find $(TEST_DIR) -mindepth 1 -maxdepth 1 -type d -printf 
 all: app $(TEST_NAMES)
 
 clean:
-	rm -f **/*.o
+	find . -name "*.o" -delete
 
 lclean: clean
 	rm -f $(LIB)
