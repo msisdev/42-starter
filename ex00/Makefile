@@ -15,7 +15,7 @@ CFLAGS			:= -Wall -Wextra -Werror
 CFLAGS			+= -I $(INC_DIR)
 CFLAGS			+= $(DBG)	# make DBG="-g"
 
-LIB				:= libftprintf.a
+LIB				:= lib.a
 LIB_DIR			:= lib
 LIB_CODES		:= $(shell find $(LIB_DIR) -name '*.c')
 LIB_OBJS		:= $(LIB_CODES:.c=.o)
