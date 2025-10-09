@@ -38,10 +38,8 @@ all: app $(TEST_NAMES)
 clean:
 	find . -name "*.o" -delete
 
-lclean: clean
+fclean: clean
 	rm -f $(LIB)
-
-fclean: lclean
 	rm -f $(APP)
 	rm -f $(BIN_DIR)/*
 
