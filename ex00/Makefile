@@ -84,7 +84,8 @@ test: $(BIN_DIR) $(TEST_NAMES)
 
 .SECONDEXPANSION:
 %_test: \
-	$(LIB_OBJS) $(SRC_OBJS) \
+	$(LIB_OBJS) \
+	$(SRC_OBJS) \
 	$(TEST_SRC_OBJS) \
 	$$(shell find $(TEST_DIR)/$$*_test -type f -name '*.c' | sed 's/\.c/\.o/') | \
 	$(BIN_DIR)	# order only prerequisite
@@ -97,9 +98,9 @@ test: $(BIN_DIR) $(TEST_NAMES)
 $(BIN_DIR):
 	mkdir $(BIN_DIR)
 
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 # include test headers for test objs
 $(TEST_OBJS): %.o: %.c
 	$(CC) $(CFLAGS) -I $(TEST_INC_DIR) -c -o $@ $<
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
