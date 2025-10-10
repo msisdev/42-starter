@@ -4,6 +4,7 @@
 
 
 
+
 ## What is this?
 
 `42-starter` is...
@@ -23,6 +24,8 @@ that supports automated tasks that run whenever you push a commit such as...
 > `42-starter` is opinionated and requires you to use the same folder structure and `Makefile` because the Github Action workflows depend on them.
 
 
+
+
 ## Quickstart
 
 Press the `Use this template` button above. As a result, you will a create another repository that has the same files with this repo.
@@ -34,22 +37,25 @@ Press the `Use this template` button above. As a result, you will a create anoth
 ```
 ex00
 ├── Makefile
-├── app/
+├── app
 │   └── main.c
-├── include/
+├── include
 │   ├── ft_42.h
 │   ├── global.h
 │   └── types.h
-├── lib/
+├── lib
 │   └── ft_42.c
-├── src/
+├── src
 │   └── global.c
-├── test/
-│   ├── fail_test/
-│   │   ├── main.c
-│   ├── success_test/
+├── test
+│   ├── fail_test
 │   │   └── main.c
+│   └── success_test
+│       └── main.c
+├── test_include
 │   └── test.h
+├── test_src
+│   └── assert.c
 └── tester.sh
 ```
 - `app`: sources related with main functions.
@@ -57,7 +63,10 @@ ex00
 - `lib`: sources related with `lib.a`.
 - `src`: sources for main logic
 - `test`: a place where individual test programs go in.
+- `test_include`: common headers for all test related srcs
+- `test_src`: common srcs for each test programs
 - `tester.sh`: a script that does same with test workflow.
+
 
 
 
