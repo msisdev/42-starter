@@ -10,7 +10,7 @@ APP_OBJS		:= $(APP_CODES:.c=.o)
 BIN_DIR			:= bin
 INC_DIR			:= include
 
-cc				:= cc
+CC				:= cc
 CFLAGS			:= -Wall -Wextra -Werror
 CFLAGS			+= -I $(INC_DIR)
 CFLAGS			+= $(DBG)	# make DBG="-g"
@@ -26,6 +26,9 @@ SRC_OBJS		:= $(SRC_CODES:.c=.o)
 
 TEST_DIR		:= test
 TEST_NAMES		:= $(shell find $(TEST_DIR) -mindepth 1 -maxdepth 1 -type d -printf '%f\n')
+TEST_CODES		:= $(shell find $(TEST_DIR) -name '*.c')
+TEST_OBJS		:= $(TEST_CODES:.c=.o)
+TEST_INC_DIR	:= test
 
 .PHONY: all app test lib
 
@@ -33,7 +36,7 @@ TEST_NAMES		:= $(shell find $(TEST_DIR) -mindepth 1 -maxdepth 1 -type d -printf 
 #- CMD --------------------------------#
 #--------------------------------------#
 
-all: app $(TEST_NAMES)
+all: app
 
 clean:
 	find . -name "*.o" -delete
@@ -59,7 +62,6 @@ $(APP): $(LIB_OBJS) $(SRC_OBJS) $(APP_OBJS)
 #--------------------------------------#
 
 lib: $(LIB)
-# lib: $(LIB_OBJS)
 
 $(LIB): $(LIB_OBJS)
 	ar crs $(LIB) $(LIB_OBJS)
@@ -80,7 +82,7 @@ test: $(BIN_DIR) $(TEST_NAMES)
 %_test: $(LIB_OBJS) $(SRC_OBJS)\
 	$$(shell find $(TEST_DIR)/$$*_test -type f -name '*.c' | sed 's/\.c/\.o/') |\
 	$(BIN_DIR)
-	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $^
+	$(CC) $(CFLAGS) -I $(TEST_INC_DIR) -o $(BIN_DIR)/$@ $^
 
 #--------------------------------------#
 #- COMMONS ----------------------------#
@@ -88,6 +90,9 @@ test: $(BIN_DIR) $(TEST_NAMES)
 
 $(BIN_DIR):
 	mkdir $(BIN_DIR)
+
+$(TEST_OBJS): %.o: %.c
+	$(CC) $(CFLAGS) -I $(TEST_INC_DIR) -c -o $@ $<
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
