@@ -27,8 +27,12 @@ SRC_OBJS		:= $(SRC_CODES:.c=.o)
 TEST_DIR		:= test
 TEST_NAMES		:= $(shell find $(TEST_DIR) -mindepth 1 -maxdepth 1 -type d -printf '%f\n')
 TEST_CODES		:= $(shell find $(TEST_DIR) -name '*.c')
-TEST_OBJS		:= $(TEST_CODES:.c=.o)
-TEST_INC_DIR	:= test
+TEST_INC_DIR	:= test_include		# common headers for test
+TEST_SRC_DIR	:= test_src			# common srcs for test
+TEST_SRC_CODES	:= $(shell find $(TEST_SRC_DIR) -name '*.c')
+TEST_SRC_OBJS	:= $(TEST_SRC_CODES:.c=.o)
+# objs including all test srcs and common srcs
+TEST_OBJS		:= $(TEST_CODES:.c=.o) $(TEST_SRC_OBJS)
 
 .PHONY: all app test lib
 
@@ -79,9 +83,11 @@ src: $(SRC_OBJS)
 test: $(BIN_DIR) $(TEST_NAMES)
 
 .SECONDEXPANSION:
-%_test: $(LIB_OBJS) $(SRC_OBJS)\
-	$$(shell find $(TEST_DIR)/$$*_test -type f -name '*.c' | sed 's/\.c/\.o/') |\
-	$(BIN_DIR)
+%_test: \
+	$(LIB_OBJS) $(SRC_OBJS) \
+	$(TEST_SRC_OBJS) \
+	$$(shell find $(TEST_DIR)/$$*_test -type f -name '*.c' | sed 's/\.c/\.o/') | \
+	$(BIN_DIR)	# order only prerequisite
 	$(CC) $(CFLAGS) -I $(TEST_INC_DIR) -o $(BIN_DIR)/$@ $^
 
 #--------------------------------------#
@@ -91,6 +97,7 @@ test: $(BIN_DIR) $(TEST_NAMES)
 $(BIN_DIR):
 	mkdir $(BIN_DIR)
 
+# include test headers for test objs
 $(TEST_OBJS): %.o: %.c
 	$(CC) $(CFLAGS) -I $(TEST_INC_DIR) -c -o $@ $<
 

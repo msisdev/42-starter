@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 20:46:49 by minseobk          #+#    #+#             */
-/*   Updated: 2025/10/10 17:09:26 by minseobk         ###   ########.fr       */
+/*   Created: 2025/10/10 14:34:28 by minseobk          #+#    #+#             */
+/*   Updated: 2025/10/10 17:08:05 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#ifndef TEST_H
+# define TEST_H
+# include "ft_42.h"
+# include <assert.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <stdbool.h>
 
-int	main(void)
-{
-	ft_42();
-	assert_msg(0, "failed\n");
-	return (1);
-}
+void	assert_msg(int expression, const char *fmt, ...);
+
+#endif // TEST_H

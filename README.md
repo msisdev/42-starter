@@ -47,8 +47,9 @@ ex00
 ├── test/
 │   ├── fail_test/
 │   │   ├── main.c
-│   └── success_test/
-│       ├── main.c
+│   ├── success_test/
+│   │   └── main.c
+│   └── test.h
 └── tester.sh
 ```
 - `app`: sources related with main functions.

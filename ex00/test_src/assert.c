@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   assert.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/10 14:34:28 by minseobk          #+#    #+#             */
-/*   Updated: 2025/10/10 14:35:33 by minseobk         ###   ########.fr       */
+/*   Created: 2025/10/10 16:49:03 by minseobk          #+#    #+#             */
+/*   Updated: 2025/10/10 17:08:18 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
-# include "ft_42.h"
+#include "test.h"
 
-#endif // TEST_H
+void	assert_msg(int expression, const char *fmt, ...)
+{
+	va_list	args;
+
+	if (expression)
+		return ;
+	fprintf(stderr, "\n*** ASSERTION FAILURE ***\n");
+	fprintf(stderr, "Message: ");
+	va_start(args, fmt);
+	vfprintf(stderr, fmt, args);
+	va_end(args);
+	fprintf(stderr, "\n*************************\n");
+	abort();
+}
