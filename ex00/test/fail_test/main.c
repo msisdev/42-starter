@@ -6,7 +6,7 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 20:46:49 by minseobk          #+#    #+#             */
-/*   Updated: 2025/10/10 17:09:26 by minseobk         ###   ########.fr       */
+/*   Updated: 2025/10/12 17:20:17 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	main(void)
 {
 	ft_42();
-	assert_msg(0, "failed\n");
+	assert_msg(0, "%s\n", "failed");
 	return (1);
 }
