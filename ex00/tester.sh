@@ -2,12 +2,18 @@
 
 BIN_DIR="./bin"
           
-# Find all executable files in the specified folder
-find "$BIN_DIR" -type f -name '*_test' -executable -print0 | while IFS= read -r -d $'\0' binary_path; do
-	echo "Running: $binary_path"
-	"$binary_path" # Execute the binary
+# For each executable file in the folder
+find "$BIN_DIR" -type f -name '*_test' -print0 | while IFS= read -r -d $'\0' bin_path; do
+	# Skip non-executable file
+	[ -x "$bin_path" ] || continue
+
+	# Execute the binary
+	echo "Running: $bin_path"
+	"$bin_path"
+
+	# Check result
 	if [ $? -ne 0 ]; then
-		echo "Error running $binary_path"
-		exit 1 # Exit if a binary fails
+		echo "Error running $bin_path"
+		exit 1
 	fi
 done
