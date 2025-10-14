@@ -27,11 +27,11 @@ SRC_OBJS		:= $(SRC_CODES:.c=.o)
 TEST_DIR		:= test
 TEST_NAMES		:= $(shell find $(TEST_DIR) -mindepth 1 -maxdepth 1 -type d -printf '%f\n')
 TEST_CODES		:= $(shell find $(TEST_DIR) -name '*.c')
-TEST_INC_DIR	:= test_include		# common headers for test
-TEST_SRC_DIR	:= test_src			# common srcs for test
+TEST_INC_DIR	:= test_include		# shared headers for test
+TEST_SRC_DIR	:= test_src			# shared srcs for test
 TEST_SRC_CODES	:= $(shell find $(TEST_SRC_DIR) -name '*.c')
 TEST_SRC_OBJS	:= $(TEST_SRC_CODES:.c=.o)
-# objs including all test srcs and common srcs
+# objs including all test srcs and shared srcs
 TEST_OBJS		:= $(TEST_CODES:.c=.o) $(TEST_SRC_OBJS)
 
 .PHONY: all app test lib
