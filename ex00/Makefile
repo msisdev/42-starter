@@ -2,6 +2,7 @@
 #- CONFIG -----------------------------#
 #--------------------------------------#
 
+# main source codes
 APP				:= a.out
 APP_DIR			:= app
 APP_CODES		:= $(shell find $(APP_DIR) -name '*.c')
@@ -34,28 +35,31 @@ TEST_SRC_OBJS	:= $(TEST_SRC_CODES:.c=.o)
 # objs including all test srcs and shared srcs
 TEST_OBJS		:= $(TEST_CODES:.c=.o) $(TEST_SRC_OBJS)
 
-.PHONY: all app test lib
-
 #--------------------------------------#
 #- CMD --------------------------------#
 #--------------------------------------#
 
+.PHONY: all
 all: app
 
+.PHONY: clean
 clean:
 	find . -name "*.o" -delete
 
+.PHONY: fclean
 fclean: clean
 	rm -f $(LIB)
 	rm -f $(APP)
 	rm -f $(BIN_DIR)/*
 
+.PHONY: re
 re: fclean all
 
 #--------------------------------------#
 #- APP --------------------------------#
 #--------------------------------------#
 
+.PHONY: app
 app: lib $(APP)
 
 $(APP): $(LIB_OBJS) $(SRC_OBJS) $(APP_OBJS)
@@ -65,6 +69,7 @@ $(APP): $(LIB_OBJS) $(SRC_OBJS) $(APP_OBJS)
 #- LIB --------------------------------#
 #--------------------------------------#
 
+.PHONY: lib
 lib: $(LIB)
 
 $(LIB): $(LIB_OBJS)
@@ -74,12 +79,14 @@ $(LIB): $(LIB_OBJS)
 #- SRC --------------------------------#
 #--------------------------------------#
 
+.PHONY: src
 src: $(SRC_OBJS)
 
 #--------------------------------------#
 #- TEST -------------------------------#
 #--------------------------------------#
 
+.PHONY: test
 test: $(BIN_DIR) $(TEST_NAMES)
 
 .SECONDEXPANSION:
