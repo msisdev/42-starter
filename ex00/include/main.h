@@ -1,15 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global.c                                           :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 16:24:36 by minseobk          #+#    #+#             */
-/*   Updated: 2025/10/18 19:12:41 by minseobk         ###   ########.fr       */
+/*   Created: 2025/12/27 18:03:12 by minseobk          #+#    #+#             */
+/*   Updated: 2025/12/27 18:05:00 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// USING GLOBAL VARIABLE WITHOUT STATIC QUALIFIER
-// VIOLATES NORMINETTE !!
-int	g_int;
+#ifndef MAIN_H
+# define MAIN_H
+# include <unistd.h>
+
+int	ft_42(void);
+
+#endif // MAIN_H

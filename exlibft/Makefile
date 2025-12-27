@@ -2,10 +2,10 @@
 #- CONFIG -----------------------------#
 #--------------------------------------#
 
-# main source codes
-APP				:= a.out
+NAME			:= a.out
+APP				:= $(NAME)
 APP_DIR			:= app
-APP_CODES		:= $(shell find $(APP_DIR) -name '*.c')
+APP_CODES		:= $(APP_DIR)/main.c
 APP_OBJS		:= $(APP_CODES:.c=.o)
 
 BIN_DIR			:= bin
@@ -13,8 +13,11 @@ INC_DIR			:= include
 
 CC				:= cc
 CFLAGS			:= -Wall -Wextra -Werror
-CFLAGS			+= -I $(INC_DIR)
+CFLAGS			+= -I$(INC_DIR)
 CFLAGS			+= $(DBG)	# make DBG="-g"
+
+LIBFT_DIR		:= libft
+LIBFT			:= libft/libft.a
 
 SRC_DIR			:= src
 SRC_CODES		:= $(shell find $(SRC_DIR) -name '*.c')
@@ -39,10 +42,12 @@ all: app
 
 .PHONY: clean
 clean:
+	make -C $(LIBFT_DIR) clean
 	find . -name "*.o" -delete
 
 .PHONY: fclean
 fclean: clean
+	make -C $(LIBFT_DIR) fclean
 	rm -f $(APP)
 	rm -f $(BIN_DIR)/*
 
@@ -54,10 +59,17 @@ re: fclean all
 #--------------------------------------#
 
 .PHONY: app
-app: $(APP)
+app: $(NAME)
 
-$(APP): $(SRC_OBJS) $(APP_OBJS)
+$(NAME): $(SRC_OBJS) $(APP_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^
+
+#--------------------------------------#
+#- LIBFT ------------------------------#
+#--------------------------------------#
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 #--------------------------------------#
 #- SRC --------------------------------#
@@ -75,6 +87,7 @@ test: $(BIN_DIR) $(TEST_NAMES)
 
 .SECONDEXPANSION:
 %_test: \
+	$(LIB_OBJS) \
 	$(SRC_OBJS) \
 	$(TEST_SRC_OBJS) \
 	$$(shell find $(TEST_DIR)/$$*_test -type f -name '*.c' | sed 's/\.c/\.o/') | \

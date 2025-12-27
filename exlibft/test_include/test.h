@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_42.h                                            :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseobk <minseobk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 19:04:11 by minseobk          #+#    #+#             */
-/*   Updated: 2025/08/02 21:18:37 by minseobk         ###   ########.fr       */
+/*   Created: 2025/10/10 14:34:28 by minseobk          #+#    #+#             */
+/*   Updated: 2025/12/27 18:05:53 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_42_H
-# define FT_42_H
-# include "types.h"
+#ifndef TEST_H
+# define TEST_H
+# include "main.h"
+# include <assert.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <stdbool.h>
 
-t_i32	ft_42(void);
+void	assert_msg(int expression, const char *fmt, ...);
 
-#endif // FT_42_H
+#endif // TEST_H

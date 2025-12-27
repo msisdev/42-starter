@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_42.c                                            :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseobk <minseobk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 19:04:41 by minseobk          #+#    #+#             */
-/*   Updated: 2025/08/02 21:18:51 by minseobk         ###   ########.fr       */
+/*   Created: 2025/12/27 19:44:20 by minseobk          #+#    #+#             */
+/*   Updated: 2025/12/27 19:45:13 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "types.h"
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <unistd.h>
 
-t_i32	ft_42(void)
-{
-	write(1, "42\n", 3);
-	return (42);
-}
+#endif // LIBFT_H

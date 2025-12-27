@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global.h                                           :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseobk <minseobk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 16:24:02 by minseobk          #+#    #+#             */
-/*   Updated: 2025/08/04 16:24:36 by minseobk         ###   ########.fr       */
+/*   Created: 2025/12/27 18:03:12 by minseobk          #+#    #+#             */
+/*   Updated: 2025/12/27 18:05:00 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GLOBAL_H
-# define GLOBAL_H
+#ifndef MAIN_H
+# define MAIN_H
+# include <unistd.h>
 
-extern int	g_int;
+int	ft_42(void);
 
-#endif // GLOBAL_H
+#endif // MAIN_H
