@@ -10,5 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: alexandregv/norminette-action@v3.3.50
+      working-directory: ./ex00
       with:
         flags: '.'
