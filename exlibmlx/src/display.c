@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 19:05:19 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/04 15:31:27 by minseobk         ###   ########.fr       */
+/*   Created: 2026/01/02 18:33:24 by minseobk          #+#    #+#             */
+/*   Updated: 2026/01/04 15:04:36 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-const t_point	g_center = {.x = WINDOW_W / 2, .y = WINDOW_H / 2};
-
-int	handle_close(int keycode, t_vars *v)
+void	dis_init(void *mlx_ptr, t_display *d)
 {
-	(void)keycode;
-	mlx_destroy_window(v->mlx, v->win);
-	exit(0);
-	return (0);
-}
-
-int	main(void)
-{
-	t_context	c;
-
-	ctx_init(&c);
-	draw_circle(&c.d, g_center, 200, PALETTE_MAGENTA);
-	ctx_display(&c);
-	ctx_hook(&c, EVENT_KEY_PRESS, MASK_KEY_PRESS, handle_close);
-	ctx_loop(&c);
-	return (0);
+	d->img = mlx_new_image(mlx_ptr, WINDOW_W, WINDOW_H);
+	if (!d->img)
+		exit(1);
+	d->addr = mlx_get_data_addr(d->img, &d->_bpp, &d->_ll, &d->_end);
+	if (!d->addr)
+		exit(1);
 }
