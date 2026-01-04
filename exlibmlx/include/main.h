@@ -6,7 +6,7 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:03:12 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/04 19:26:42 by minseobk         ###   ########.fr       */
+/*   Updated: 2026/01/04 19:39:44 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ typedef struct s_display
 	int		_end;
 }	t_display;
 
+typedef struct s_state
+{
+	int	frame;
+}	t_state;
+
 typedef struct s_context
 {
 	void		*mlx;
 	void		*win;
 	t_display	d;
+	t_state		s;
 }	t_context;
 
 typedef struct s_point
@@ -61,7 +67,8 @@ typedef enum e_palette
 /* context.c */
 void	ctx_init(t_context *c);
 void	ctx_display(const t_context *c);
-void	ctx_hook(const t_context *c, t_event e, t_mask m, int (*f)());
+void	ctx_hook_event(const t_context *c, t_event e, t_mask m, int (*f)());
+void	ctx_hook_loop(const t_context *c, int (*f)());
 void	ctx_loop(const t_context *c);
 
 /* display.c */
@@ -71,5 +78,8 @@ void	dis_init(void *mlx_ptr, t_display *d);
 t_point	add_point(t_point a, t_point b);
 void	draw_point(t_display *d, t_point p, t_color c);
 void	draw_circle(t_display *d, t_point p, int r, t_color c);
+
+/* state */
+void	state_init(t_state *s);
 
 #endif // MAIN_H

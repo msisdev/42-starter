@@ -6,17 +6,31 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:05:19 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/04 19:25:45 by minseobk         ###   ########.fr       */
+/*   Updated: 2026/01/04 19:44:25 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include <stdio.h>
 
-int	handle_close(int keycode, t_context *c)
+static int	handle_key_press(int keycode, t_context *c)
 {
 	(void)keycode;
 	mlx_destroy_window(c->mlx, c->win);
 	exit(0);
+	return (0);
+}
+
+static int	handle_loop(t_context *c)
+{
+	int	t;
+
+	t = c->s.frame + 1;
+	if (t == 60)
+		t = 0;
+	if (t % 10 == 0)
+		printf("frame: %2d\n", t);
+	c->s.frame = t;
 	return (0);
 }
 
@@ -28,7 +42,8 @@ int	main(void)
 	ctx_init(&c);
 	draw_circle(&c.d, center, 200, PALETTE_MAGENTA);
 	ctx_display(&c);
-	ctx_hook(&c, EVENT_KEY_PRESS, MASK_KEY_PRESS, handle_close);
+	ctx_hook_event(&c, EVENT_KEY_PRESS, MASK_KEY_PRESS, handle_key_press);
+	ctx_hook_loop(&c, handle_loop);
 	ctx_loop(&c);
 	return (0);
 }
