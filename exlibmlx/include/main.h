@@ -6,7 +6,7 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:03:12 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/05 15:25:07 by minseobk         ###   ########.fr       */
+/*   Updated: 2026/01/05 15:58:46 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 # include "libft.h"
 # include "mlx.h"
 # include "mlx_types.h"
-# define WINDOW_W 1920
-# define WINDOW_H 1080
-# define WINDOW_T "Hello"
-
-typedef int		t_color;
-typedef char	*t_addr;
+# include "types.h"
+# define WIN_W 1440
+# define WIN_H 900
+# define WIN_T "Hello, World!"
 
 typedef struct s_display
 {
@@ -45,24 +43,6 @@ typedef struct s_context
 	t_display	d;
 	t_state		s;
 }	t_context;
-
-typedef struct s_pixel
-{
-	int	x;
-	int	y;
-}	t_pixel;
-
-typedef enum e_palette
-{
-	PALETTE_RED = 0x00ff0000,
-	PALETTE_GREEN = 0x0000ff00,
-	PALETTE_BLUE = 0x000000ff,
-	PALETTE_WHITE = 0x00ffffff,
-	PALETTE_BLACK = 0x00000000,
-	PALETTE_YELLOW = 0x00ffff00,
-	PALETTE_CYAN = 0x0000ffff,
-	PALETTE_MAGENTA = 0x00ff00ff,
-}	t_palette;
 
 /* context.c */
 void		ctx_init(t_context *c);
