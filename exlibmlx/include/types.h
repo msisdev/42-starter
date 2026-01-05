@@ -6,15 +6,15 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 15:27:54 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/05 15:30:15 by minseobk         ###   ########.fr       */
+/*   Updated: 2026/01/05 16:03:11 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-typedef int		t_color;
-typedef char	*t_addr;
+typedef unsigned int	t_color;
+typedef char			*t_addr;
 
 typedef struct s_pixel
 {
