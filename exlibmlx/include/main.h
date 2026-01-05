@@ -6,7 +6,7 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:03:12 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/05 14:20:47 by minseobk         ###   ########.fr       */
+/*   Updated: 2026/01/05 15:07:51 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_point2d	add_point(t_point2d a, t_point2d b);
 void		draw_point(t_display *d, t_point2d p, t_color c);
 void		draw_circle(t_display *d, t_point2d p, int r, t_color c);
 
-/* state */
+/* state.c */
 void		state_init(t_state *s);
 
 #endif // MAIN_H
