@@ -6,12 +6,13 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:03:12 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/05 15:58:46 by minseobk         ###   ########.fr       */
+/*   Updated: 2026/01/05 16:21:23 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
+# include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
