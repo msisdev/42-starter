@@ -6,18 +6,27 @@
 /*   By: minseobk <minseobk@student.42gyeongsan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:05:19 by minseobk          #+#    #+#             */
-/*   Updated: 2026/01/05 15:58:02 by minseobk         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:32:33 by minseobk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include <stdio.h>
 
-static int	handle_key_press(int keycode, t_context *c)
+static int	handle_destroy(t_context *c)
 {
-	(void)keycode;
 	mlx_destroy_window(c->mlx, c->win);
+	mlx_destroy_image(c->mlx, c->d.img);
+	mlx_destroy_display(c->mlx);
+	free(c->mlx);
 	exit(0);
+	return (0);
+}
+
+static int	handle_key_press(int code, t_context *c)
+{
+	if (code == KEY_ESC)
+		handle_destroy(c);
 	return (0);
 }
 
@@ -43,6 +52,7 @@ int	main(void)
 	draw_circle(&c.d, center, 200, PALETTE_MAGENTA);
 	ctx_display(&c);
 	ctx_hook_event(&c, EVENT_KEY_PRESS, MASK_KEY_PRESS, handle_key_press);
+	ctx_hook_event(&c, EVENT_DESTROY_NOTIFY, 0, handle_destroy);
 	ctx_hook_loop(&c, handle_loop);
 	ctx_loop(&c);
 	return (0);
