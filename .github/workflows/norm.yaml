@@ -22,4 +22,7 @@ jobs:
 
     - name: Run Norminette
       working-directory: ./ex00
-      run: norminette $(ls -d * | grep -v test)
+      run: |
+        ARG=$(ls -d * | grep -v test)
+        echo "$ARG"
+        norminette $ARG
