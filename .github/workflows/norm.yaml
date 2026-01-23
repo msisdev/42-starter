@@ -6,10 +6,20 @@ jobs:
 
   job-norm:
     runs-on: ubuntu-latest
-    name: Norm v3.3.50
     steps:
-    - uses: actions/checkout@v4
-    - uses: alexandregv/norminette-action@v3.3.50
-      working-directory: ./ex00
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        flags: '.'
+        python-version: '3.x'
+    
+    - name: Install Norminette
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -U norminette
+
+    - name: Run Norminette
+      working-directory: ./ex00
+      run: norminette $(ls -d * | grep -v test)
